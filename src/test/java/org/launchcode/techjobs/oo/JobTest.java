@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class JobTest {
-    //TODO: Create your unit tests here
+
     @Test
     public void testSettingJobId() {
         Job employee1 = new Job();
@@ -36,5 +36,47 @@ public class JobTest {
         Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(job1.equals(job2));
     }
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String result = job1.toString();
+
+        assertTrue(result.startsWith(System.lineSeparator()));
+        assertTrue(result.endsWith(System.lineSeparator()));
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+   Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+       String result = job1.toString();
+       String expected =
+               System.lineSeparator() +
+                       "ID: " + job1.getId() + System.lineSeparator() +
+                       "Name: " + job1.getName() + System.lineSeparator() +
+                       "Employer: " + job1.getEmployer().getValue() + System.lineSeparator() +
+                       "Location: " + job1.getLocation().getValue() + System.lineSeparator() +
+                       "Position Type: " + job1.getPositionType().getValue() + System.lineSeparator() +
+                       "Core Competency: " + job1.getCoreCompetency().getValue() + System.lineSeparator() +
+                       System.lineSeparator();
+
+       assertEquals(expected, result);
+
+   }
+
+   @Test
+    public void testToStringHandlesEmptyField () {
+       Job job1 = new Job("Product tester", new Employer(""), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+       String result = job1.toString();
+       String expected =
+               System.lineSeparator() + "ID: " + job1.getId() + System.lineSeparator() +
+                       "Name: " + (job1.getName().isEmpty() ? "Data not available" : job1.getName()) + System.lineSeparator() +
+                       "Employer: " + (job1.getEmployer().getValue().isEmpty() ? "Data not available" : job1.getEmployer()) + System.lineSeparator() +
+                       "Location: " + (job1.getLocation().getValue().isEmpty() ? "Data not available" : job1.getLocation()) + System.lineSeparator() +
+                       "Position Type: " + (job1.getPositionType().getValue().isEmpty() ? "Data not available" : job1.getPositionType()) + System.lineSeparator() +
+                       "Core Competency: " + (job1.getCoreCompetency().getValue().isEmpty() ? "Data not available" : job1.getCoreCompetency()) + System.lineSeparator() +
+                       System.lineSeparator();
+
+       assertEquals(expected, result);
+
+   }
 
 }
