@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static java.lang.System.lineSeparator;
+
 public class Job {
 
     private int id;
@@ -98,12 +100,12 @@ public class Job {
     @Override
     public String toString() {
         return
-                System.lineSeparator() + "ID: " + getId() + System.lineSeparator() +
-                        "Name: " + (getName().isEmpty() ? "Data not available" : getName()) + System.lineSeparator() +
-                        "Employer: " + (getEmployer().getValue().isEmpty() ? "Data not available" : getEmployer()) + System.lineSeparator() +
-                        "Location: " + (getLocation().getValue().isEmpty() ? "Data not available" : getLocation()) + System.lineSeparator() +
-                        "Position Type: " + (getPositionType().getValue().isEmpty() ? "Data not available" : getPositionType()) + System.lineSeparator() +
-                        "Core Competency: " + (getCoreCompetency().getValue().isEmpty() ? "Data not available" + System.lineSeparator() : getCoreCompetency()) + System.lineSeparator() + System.lineSeparator();
+                lineSeparator() + "ID: " + getId() + lineSeparator() +
+                        "Name: " + (getName().isEmpty() ? "Data not available" : getName()) + lineSeparator() +
+                        "Employer: " + (getEmployer().getValue().isEmpty() ? "Data not available" : getEmployer().getValue()) + lineSeparator() +
+                        "Location: " + (getLocation().getValue().isEmpty() ? "Data not available" : getLocation().getValue()) + lineSeparator() +
+                        "Position Type: " + (getPositionType().getValue().isEmpty() ? "Data not available" : getPositionType().getValue()) + lineSeparator() +
+                        "Core Competency: " + (getCoreCompetency().getValue().isEmpty() ? "Data not available" : getCoreCompetency().getValue()) + lineSeparator();
     }
     }
 

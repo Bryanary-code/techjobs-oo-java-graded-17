@@ -3,6 +3,7 @@ package org.launchcode.techjobs.oo;
 
 import org.junit.jupiter.api.Test;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -31,19 +32,21 @@ public class JobTest {
     }
 
     @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String jobString = job1.toString();
+
+        // Check if the string starts and ends with the correct line separator
+        assertTrue(jobString.startsWith(System.lineSeparator()));
+        assertTrue(jobString.endsWith(System.lineSeparator()));
+    }
+    @Test
     public void testJobsForEquality() {
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(job1.equals(job2));
     }
-    @Test
-    public void testToStringStartsAndEndsWithNewLine() {
-        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        String result = job1.toString();
 
-        assertTrue(result.startsWith(System.lineSeparator()));
-        assertTrue(result.endsWith(System.lineSeparator()));
-    }
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
    Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
@@ -55,8 +58,7 @@ public class JobTest {
                        "Employer: " + job1.getEmployer().getValue() + System.lineSeparator() +
                        "Location: " + job1.getLocation().getValue() + System.lineSeparator() +
                        "Position Type: " + job1.getPositionType().getValue() + System.lineSeparator() +
-                       "Core Competency: " + job1.getCoreCompetency().getValue() + System.lineSeparator() +
-                       System.lineSeparator();
+                       "Core Competency: " + job1.getCoreCompetency().getValue() + System.lineSeparator();
 
        assertEquals(expected, result);
 
@@ -72,8 +74,7 @@ public class JobTest {
                        "Employer: " + (job1.getEmployer().getValue().isEmpty() ? "Data not available" : job1.getEmployer()) + System.lineSeparator() +
                        "Location: " + (job1.getLocation().getValue().isEmpty() ? "Data not available" : job1.getLocation()) + System.lineSeparator() +
                        "Position Type: " + (job1.getPositionType().getValue().isEmpty() ? "Data not available" : job1.getPositionType()) + System.lineSeparator() +
-                       "Core Competency: " + (job1.getCoreCompetency().getValue().isEmpty() ? "Data not available" : job1.getCoreCompetency()) + System.lineSeparator() +
-                       System.lineSeparator();
+                       "Core Competency: " + (job1.getCoreCompetency().getValue().isEmpty() ? "Data not available" : job1.getCoreCompetency()) + System.lineSeparator();
 
        assertEquals(expected, result);
 
